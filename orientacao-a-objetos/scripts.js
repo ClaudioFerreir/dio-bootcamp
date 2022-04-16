@@ -15,11 +15,69 @@ class ContaBancaria {
   set saldo(valor){
     this._saldo = valor;
   }
+
+  // Dentro de ContaBancaria, crie os métodos sacar e depositar;
+  sacar(valor){
+    if (valor > this._saldo){
+      return "Operação negada"
+    }
+
+    this._saldo = this._saldo - valor;
+
+    return this._saldo;
 }
-// Dentro de ContaBancaria, crie os métodos sacar e depositar;
+
+  depositar(valor){
+    this._saldo = this._saldo + valor;
+
+    return this._saldo;
+  }
+
 // Crie uma classe-filha chamada ContaCorrente que herda todos esses parâmetros e ainda possua o parâmetro cartaoCredito;
-// Ainda em ContaCorrente, construa o getter e o setter de cartaoCredito;
-// Ainda em ContaCorrente, faça com que o tipo seja 'conta corrente' por padrão;
+
+class ContaCorrente{
+  constructor(agencia, numero, saldo, cartaoCredito) {
+    super(agencia, numero, saldo)
+    // Ainda em ContaCorrente, faça com que o tipo seja 'conta corrente' por padrão;
+    this.tipo = 'corrente';
+    this._cartaoCredito = cartaoCredito;
+  }
+
+  // Ainda em ContaCorrente, construa o getter e o setter de cartaoCredito;
+  get cartaoCredito() {
+    return this._cartaoCredito
+  }
+
+  set cartaoCredito(valor) {
+    return this._cartaoCredito = valor;
+  }
+
+}
+
 // Crie uma classe-filha chamada ContaPoupanca que herda todos os parâmetros de ContaBancaria;
+
+class ContaPoupanca{
+  constructor(agencia, numero, tipo, saldo){
+    super(agencia, numero, tipo, saldo);
+    this.tipo = 'poupanca';
+  }
+}
 // Crie uma classe-filha chamada ContaUniversitaria que herda todos os parâmetros de ContaBancaria;
-// Faça com que o método saque de ContaUniversitaria apenas seja capaz de sacar valores menores que 500 reais.
+
+class ContaUniversitaria{
+  constructor(agencia, numero, tipo, saldo){
+    super(agencia, numero, tipo, saldo)
+    this.tipo = 'universitária'
+  }
+
+  sacar(valor){
+    // Faça com que o método saque de ContaUniversitaria apenas seja capaz de sacar valores menores que 500 reais.
+    if(valor > 500) {
+      return "Operação negada"
+    }
+
+    this._saldo = this._saldo - valor;
+
+    return this._saldo;
+  }
+}
