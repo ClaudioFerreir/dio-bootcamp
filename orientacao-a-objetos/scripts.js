@@ -1,10 +1,10 @@
 // Crie a classe ContaBancaria, que possui os parâmetros agencia, numero, tipo e saldo;
 class ContaBancaria {
-  constructor(agencia, numero, tipo, saldo) {
+  constructor(agencia, numero, tipo) {
     this.agencia = agencia;
     this.numero = numero;
     this.tipo = tipo;
-    this._saldo = saldo; //quando tem um get e set colocamos um _ na frente, para ter o get e set e nao a propriedade
+    this._saldo = 0; //quando tem um get e set colocamos um _ na frente, para ter o get e set e nao a propriedade
   }
 
   // Dentro de ContaBancaria, construa o getter e o setter de saldo;
@@ -32,12 +32,12 @@ class ContaBancaria {
 
     return this._saldo;
   }
-
+}
 // Crie uma classe-filha chamada ContaCorrente que herda todos esses parâmetros e ainda possua o parâmetro cartaoCredito;
 
-class ContaCorrente{
-  constructor(agencia, numero, saldo, cartaoCredito) {
-    super(agencia, numero, saldo)
+class ContaCorrente extends ContaBancaria{
+  constructor(agencia, numero, cartaoCredito) {
+    super(agencia, numero)
     // Ainda em ContaCorrente, faça com que o tipo seja 'conta corrente' por padrão;
     this.tipo = 'corrente';
     this._cartaoCredito = cartaoCredito;
@@ -56,17 +56,17 @@ class ContaCorrente{
 
 // Crie uma classe-filha chamada ContaPoupanca que herda todos os parâmetros de ContaBancaria;
 
-class ContaPoupanca{
-  constructor(agencia, numero, tipo, saldo){
-    super(agencia, numero, tipo, saldo);
+class ContaPoupanca extends ContaBancaria{
+  constructor(agencia, numero, tipo){
+    super(agencia, numero, tipo);
     this.tipo = 'poupanca';
   }
 }
 // Crie uma classe-filha chamada ContaUniversitaria que herda todos os parâmetros de ContaBancaria;
 
-class ContaUniversitaria{
-  constructor(agencia, numero, tipo, saldo){
-    super(agencia, numero, tipo, saldo)
+class ContaUniversitaria extends ContaBancaria{
+  constructor(agencia, numero, tipo){
+    super(agencia, numero, tipo)
     this.tipo = 'universitária'
   }
 
